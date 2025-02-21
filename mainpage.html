@@ -6,151 +6,145 @@
     <title>Travel Planner</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-tr from-stone-950 to to-blue-950 mx-auto">
-    <center>
+<body class="bg-gradient-to-tr from-stone-950 to-blue-950 min-h-screen flex flex-col items-center p-6">
 
-    <nav class=" bg-slate-300 rounded-3xl mx-3 mt-6 hover:scale-90 transition-transform duration-1000 shadow-lg p-4">
-        <div class="container mx-auto flex justify-between items-center">
+    <!-- Navigation Bar -->
+    <nav class="bg-slate-300 rounded-3xl w-full max-w-4xl hover:scale-90 transition-transform duration-1000 shadow-lg p-4">
+        <div class="flex justify-between items-center">
             <h1 class="text-2xl font-bold text-gray-800">Travel Planner</h1>
             <div class="flex space-x-4">
                 <a href="#" class="text-gray-700 hover:underline">Home</a>
-                <a href="index.html" class="text-gray-700hover:underline">Logout</a>
+                <a href="index.html" class="text-gray-700 hover:underline">Logout</a>
             </div>
         </div>
     </nav>
 
-    <div class="container mx-auto p-6">
-        <div class="flex mx-4 space-y-8 justify-center items-center space-x-6">
-            <div class="w-3/3 bg-white mx-auto p-6 rounded-lg shadow-lg">
-                <h2 class="text-xl font-bold text-gray-800 mb-4">Famous Places in <span id="state-name" class="text-blue-500">[State]</span></h2>
-                <div id="places-list" class="space-y-4">
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <h3 class="font-semibold text-gray-700">Place Name</h3>
-                        <p class="text-sm text-gray-500">Date: 2023-10-15 | Time: 10:00 AM</p>
-                    </div>
-                </div>
-            </div>
+    <!-- Main Content -->
+    <div class="mt-6 flex flex-wrap justify-center items-start gap-6 w-full max-w-4xl">
 
-            <div class="w-3/3 bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-xl font-bold text-gray-800 mb-4">Plan Your Trip</h2>
-                <input type="text" id="state-input" placeholder="Enter State" class="w-full px-4 py-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <button onclick="updatePlaces()" class="w-full bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300">Search</button>
+        <!-- Famous Places Section -->
+        <div class="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Famous Places in <span id="state-name" class="text-blue-500">[State]</span></h2>
+            <div id="places-list" class="space-y-4">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="font-semibold text-gray-700">Place Name</h3>
+                    <p class="text-sm text-gray-500">Date: 2023-10-15 | Time: 10:00 AM</p>
+                </div>
             </div>
         </div>
-<br>
-        <div class="mt-6 grid grid-cols-1  gap-6">
-          <body class="bg-white min-h-screen flex items-center justify-center">
 
-            <div class="bg-white p-6 rounded-lg shadow-lg w-96 border border-gray-200">
-                <h2 class="text-2xl font-bold text-black mb-4">Travel Expense Tracker</h2>
+        <!-- Search Section -->
+        <div class="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Plan Your Trip</h2>
+            <input type="text" id="state-input" placeholder="Enter State" class="w-full px-4 py-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button onclick="updatePlaces()" class="w-full bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300">Search</button>
+        </div>
         
-                <div class="mb-4">
-                    <label class="block text-black text-sm font-semibold">Expense Name</label>
-                    <input id="expense-name" type="text" class="w-full p-3 rounded-md bg-white border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-blue-400">
-                </div>
-        
-                <div class="mb-4">
-                    <label class="block text-black text-sm font-semibold">Amount ($)</label>
-                    <input id="expense-amount" type="number" class="w-full p-3 rounded-md bg-white border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-blue-400">
-                </div>
-        
-                <button onclick="addExpense()" class="w-full p-3 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition-all">
-                    Add Expense
-                </button>
-        
-                <h3 class="text-lg font-semibold text-black mt-6">Expenses:</h3>
-                <ul id="expense-list" class="mt-3 space-y-2"></ul>
-        
-                <div class="mt-4 p-3 bg-white border border-gray-300 rounded-md">
-                    <h3 class="text-lg font-semibold text-black">Total: $<span id="total-expense">0</span></h3>
-                </div>
-            </div>
-        
-            <script>
-                let totalExpense = 0;
-        
-                function addExpense() {
-                    const nameInput = document.getElementById("expense-name");
-                    const amountInput = document.getElementById("expense-amount");
-                    const expenseList = document.getElementById("expense-list");
-                    const totalExpenseDisplay = document.getElementById("total-expense");
-        
-                    const name = nameInput.value.trim();
-                    const amount = parseFloat(amountInput.value);
-        
-                    if (name === "" || isNaN(amount) || amount <= 0) {
-                        alert("Please enter a valid expense name and amount.");
-                        return;
-                    }
-        
-                    // Add to total
-                    totalExpense += amount;
-                    totalExpenseDisplay.textContent = totalExpense.toFixed(2);
-        
-                    // Create new list item
-                    const li = document.createElement("li");
-                    li.className = "flex justify-between bg-white border border-gray-300 p-2 rounded-md text-black";
-                    li.innerHTML = `<span>${name}</span> <span>$${amount.toFixed(2)}</span>`;
-        
-                    expenseList.appendChild(li);
-        
-                    // Clear input fields
-                    nameInput.value = "";
-                    amountInput.value = "";
-                }
-            </script>
-        
-        </body>
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-xl font-bold text-gray-800 mb-4">Checklist</h2>
-                <p class="text-gray-600">Ensure you don't forget anything important.</p>
-            </div>
+    </div>
 
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-xl font-bold text-gray-800 mb-4">Smart Notifications</h2>
-                <p class="text-gray-600">Get reminders and recommendations.</p>
-            </div>
+    <!-- Expense Tracker -->
+    <div class="mt-6 w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold text-black mb-4">Travel Expense Tracker</h2>
+
+        <div class="mb-4">
+            <label class="block text-black text-sm font-semibold">Expense Name</label>
+            <input id="expense-name" type="text" class="w-full p-3 rounded-md border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-black text-sm font-semibold">Amount ($)</label>
+            <input id="expense-amount" type="number" class="w-full p-3 rounded-md border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <button onclick="addExpense()" class="w-full p-3 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition-all">Add Expense</button>
+
+        <h3 class="text-lg font-semibold text-black mt-6">Expenses:</h3>
+        <ul id="expense-list" class="mt-3 space-y-2"></ul>
+
+        <div class="mt-4 p-3 bg-white border border-gray-300 rounded-md">
+            <h3 class="text-lg font-semibold text-black">Total: $<span id="total-expense">0</span></h3>
         </div>
     </div>
-        
 
-   <script>
-    const placesData = {
-        "Tamilnadu": [
-            { name: "Marina Beach", date: "2024-02-22", time: "10:00 AM" },
-            { name: "Meenakshi Temple", date: "2024-02-23", time: "02:00 PM" }
-        ],
-        "Karnataka": [
-            { name: "Mysore Palace", date: "2024-02-24", time: "11:00 AM" },
-            { name: "Coorg Hills", date: "2024-02-25", time: "04:00 PM" }
-        ],
-         "Kerala": [
-            { name: "Munnar", date: "2024-02-24", time: "11:00 AM" },
-            { name: "Wayanad", date: "2024-02-25", time: "04:00 PM" }
-        ]
-        
-    };
+    <!-- Additional Sections -->
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
 
-    function updatePlaces() {
-      const state = document.getElementById('state-input').value;
-      document.getElementById('state-name').textContent = state;
-      const placesList = document.getElementById('places-list');
-      placesList.innerHTML = "";
-      if (placesData[state]) {
-        placesData[state].forEach(place => {
-          placesList.innerHTML += `
-            <div class="bg-gray-50 p-4 rounded-lg">
-              <h3 class="font-semibold text-gray-700">${place.name}</h3>
-              <p class="text-sm text-gray-500">Date: ${place.date} | Time: ${place.time}</p>
-            </div>`;
-        });
-      } else {
-        placesList.innerHTML = `<p class="text-gray-600">No famous places found for this state.</p>`;
-      }
-    }
-  </script>
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Checklist</h2>
+            <p class="text-gray-600">Ensure you don't forget anything important.</p>
+        </div>
 
-        </center>
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Smart Notifications</h2>
+            <p class="text-gray-600">Get reminders and recommendations.</p>
+        </div>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const placesData = {
+            "Tamilnadu": [
+                { name: "Marina Beach", date: "2024-02-22", time: "10:00 AM" },
+                { name: "Meenakshi Temple", date: "2024-02-23", time: "02:00 PM" }
+            ],
+            "Karnataka": [
+                { name: "Mysore Palace", date: "2024-02-24", time: "11:00 AM" },
+                { name: "Coorg Hills", date: "2024-02-25", time: "04:00 PM" }
+            ],
+            "Kerala": [
+                { name: "Munnar", date: "2024-02-24", time: "11:00 AM" },
+                { name: "Wayanad", date: "2024-02-25", time: "04:00 PM" }
+            ]
+        };
+
+        function updatePlaces() {
+            const state = document.getElementById('state-input').value.trim();
+            document.getElementById('state-name').textContent = state;
+            const placesList = document.getElementById('places-list');
+            placesList.innerHTML = "";
+
+            if (placesData[state]) {
+                placesData[state].forEach(place => {
+                    placesList.innerHTML += `
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h3 class="font-semibold text-gray-700">${place.name}</h3>
+                            <p class="text-sm text-gray-500">Date: ${place.date} | Time: ${place.time}</p>
+                        </div>`;
+                });
+            } else {
+                placesList.innerHTML = `<p class="text-gray-600">No famous places found for this state.</p>`;
+            }
+        }
+
+        let totalExpense = 0;
+
+        function addExpense() {
+            const nameInput = document.getElementById("expense-name");
+            const amountInput = document.getElementById("expense-amount");
+            const expenseList = document.getElementById("expense-list");
+            const totalExpenseDisplay = document.getElementById("total-expense");
+
+            const name = nameInput.value.trim();
+            const amount = parseFloat(amountInput.value);
+
+            if (name === "" || isNaN(amount) || amount <= 0) {
+                alert("Please enter a valid expense name and amount.");
+                return;
+            }
+
+            totalExpense += amount;
+            totalExpenseDisplay.textContent = totalExpense.toFixed(2);
+
+            const li = document.createElement("li");
+            li.className = "flex justify-between bg-white border border-gray-300 p-2 rounded-md text-black";
+            li.innerHTML = `<span>${name}</span> <span>$${amount.toFixed(2)}</span>`;
+
+            expenseList.appendChild(li);
+            nameInput.value = "";
+            amountInput.value = "";
+        }
+    </script>
 
 </body>
 </html>
