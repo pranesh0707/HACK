@@ -1,156 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Planner</title>
     <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-gradient-to-tr from-stone-950 to to-blue-950 mx-auto">
-    <nav
-      class="bg-slate-300 rounded-3xl mx-3 mt-6 hover:scale-90 transition-transform duration-1000 shadow-lg p-4"
-    >
-      <div class="container mx-auto flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-gray-800">Travel Planner</h1>
-        <div class="flex space-x-4">
-          <a href="#" class="text-gray-700 hover:underline">Home</a>
-          <a href="index.html" class="text-gray-700hover:underline">Logout</a>
+</head>
+<body class="bg-gradient-to-tr from-stone-950 to-blue-950 mx-auto p-6">
+
+    <nav class="bg-slate-300 rounded-3xl mx-3 mt-6 hover:scale-90 transition-transform duration-1000 shadow-lg p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-800">TripWise</h1>
+            <div class="flex space-x-4">
+                <a href="#" class="text-black-900 hover:underline">Home</a>
+                <a href="#" class="text-black-900 hover:underline">Logout</a>
+            </div>
         </div>
-      </div>
     </nav>
 
-    <div class="container mx-auto p-6">
-      <div class="flex mx-4 space-y-8 justify-center items-center space-x-6">
-        <div class="w-3/3 bg-white mx-auto p-6 rounded-lg shadow-lg">
-          <h2 class="text-xl font-bold text-gray-800 mb-4">Famous Places</h2>
-          <div id="places-list" class="space-y-4">
-            <div class="bg-gray-50 p-4 rounded-lg">
-              <h3 class="font-semibold text-gray-700">Place Name</h3>
-              <p class="text-sm text-gray-500">
-                Date: 2023-10-15 | Time: 10:00 AM
-              </p>
+    <div class="container mx-auto p-6 flex flex-wrap gap-6">
+        <div class="w-full md:w-2/3 bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Famous Places in <span id="state-name" class="text-blue-500"></span></h2>
+            <div id="places-list" class="space-y-4">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="font-semibold text-gray-700">Place Name</h3>
+                    <p class="text-sm text-gray-500">Date: 2023-10-15 | Time: 10:00 AM</p>
+                </div>
             </div>
-          </div>
         </div>
 
-        <div class="w-3/3 bg-white p-6 rounded-lg shadow-lg">
-          <h2 class="text-xl font-bold text-gray-800 mb-4">Plan Your Trip</h2>
-          <input
-            type="text"
-            id="state-input"
-            placeholder="Enter State"
-            class="w-full px-4 py-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <button
-            onclick="updatePlaces()"
-            class="w-full bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
-          >
-            Search
-          </button>
+        <div class="w-full md:w-2/3 bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Plan Your Trip</h2>
+            <input type="text" id="state-input" placeholder="Enter State" class="w-full px-4 py-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button onclick="updatePlaces()" class="w-full bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300">Search</button>
         </div>
-      </div>
-      <br />
-      <div class="mt-6 grid grid-cols-1 gap-6">
-        <body class="bg-white min-h-screen flex items-center justify-center">
-          <div
-            class="bg-white p-6 rounded-lg shadow-lg w-96 border border-gray-200"
-          >
-            <h2 class="text-2xl font-bold text-black mb-4">
-              Travel Expense Tracker
-            </h2>
+    </div>
 
+    <div class="container mx-auto p-6 flex flex-wrap gap-6 items-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-96 border border-gray-200">
+            <h2 class="text-2xl font-bold text-black mb-4">Travel Expense Tracker</h2>
             <div class="mb-4">
-              <label class="block text-black text-sm font-semibold"
-                >Expense Name</label
-              >
-              <input
-                id="expense-name"
-                type="text"
-                class="w-full p-3 rounded-md bg-white border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-blue-400"
-              />
+                <label class="block text-black text-sm font-semibold">Expense Name</label>
+                <input id="expense-name" type="text" class="w-full p-3 rounded-md bg-white border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-blue-400">
             </div>
-
             <div class="mb-4">
-              <label class="block text-black text-sm font-semibold"
-                >Amount ($)</label
-              >
-              <input
-                id="expense-amount"
-                type="number"
-                class="w-full p-3 rounded-md bg-white border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-blue-400"
-              />
+                <label class="block text-black text-sm font-semibold">Amount ($)</label>
+                <input id="expense-amount" type="number" class="w-full p-3 rounded-md bg-white border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-blue-400">
             </div>
-
-            <button
-              onclick="addExpense()"
-              class="w-full p-3 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition-all"
-            >
-              Add Expense
+            <button onclick="addExpense()" class="w-full p-3 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition-all">
+                Add Expense
             </button>
-
             <h3 class="text-lg font-semibold text-black mt-6">Expenses:</h3>
             <ul id="expense-list" class="mt-3 space-y-2"></ul>
-
             <div class="mt-4 p-3 bg-white border border-gray-300 rounded-md">
-              <h3 class="text-lg font-semibold text-black">
-                Total: $<span id="total-expense">0</span>
-              </h3>
+                <h3 class="text-lg font-semibold text-black">Total: $<span id="total-expense">0</span></h3>
             </div>
-          </div>
-
-          <script>
-            let totalExpense = 0;
-
-            function addExpense() {
-              const nameInput = document.getElementById("expense-name");
-              const amountInput = document.getElementById("expense-amount");
-              const expenseList = document.getElementById("expense-list");
-              const totalExpenseDisplay =
-                document.getElementById("total-expense");
-
-              const name = nameInput.value.trim();
-              const amount = parseFloat(amountInput.value);
-
-              if (name === "" || isNaN(amount) || amount <= 0) {
-                alert("Please enter a valid expense name and amount.");
-                return;
-              }
-
-              // Add to total
-              totalExpense += amount;
-              totalExpenseDisplay.textContent = totalExpense.toFixed(2);
-
-              // Create new list item
-              const li = document.createElement("li");
-              li.className =
-                "flex justify-between bg-white border border-gray-300 p-2 rounded-md text-black";
-              li.innerHTML = `<span>${name}</span> <span>$${amount.toFixed(
-                2
-              )}</span>`;
-
-              expenseList.appendChild(li);
-
-              // Clear input fields
-              nameInput.value = "";
-              amountInput.value = "";
-            }
-          </script>
-        </body>
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-          <h2 class="text-xl font-bold text-gray-800 mb-4">Checklist</h2>
-          <p class="text-gray-600">
-            Ensure you don't forget anything important.
-          </p>
         </div>
-
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-          <h2 class="text-xl font-bold text-gray-800 mb-4">
-            Smart Notifications
-          </h2>
-          <p class="text-gray-600">Get reminders and recommendations.</p>
-        </div>
-      </div>
+        <h3 class="text-4xl font-bold text-white w-64">
+            Plan Smart, Spend Wisely, Travel More! 
+        </h3>
     </div>
+    <div class="flex flex-col space-y-6">
+        <!-- Checklist Section -->
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Checklist</h2>
+            <p class="text-gray-600">Ensure you don't forget anything important.</p>
+            <ul class="mt-4 space-y-2">
+                <li><input type="checkbox" class="mr-2"> Passport & ID</li>
+                <li><input type="checkbox" class="mr-2"> Flight Tickets</li>
+                <li><input type="checkbox" class="mr-2"> Travel Insurance</li>
+                <li><input type="checkbox" class="mr-2"> Accommodation Bookings</li>
+            </ul>
+        </div>
+    
+        <!-- Smart Recommendations Section -->
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Smart Recommendations</h2>
+            <p class="text-gray-600">Personalized suggestions based on your travel plans.</p>
+            <ul class="mt-4 space-y-2">
+                <li>🌍 Visit the most trending attractions nearby.</li>
+                <li>🍽️ Try famous local cuisines at top-rated restaurants.</li>
+                <li>🗺️ Use offline maps for seamless navigation.</li>
+                <li>🎫 Book activities in advance to save money.</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="container mx-auto p-6">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Checklist</h2>
+            <ul id="checklist" class="space-y-2">
+                <li><input type="checkbox" class="mr-2"> Book Flights</li>
+                <li><input type="checkbox" class="mr-2"> Reserve Hotel</li>
+                <li><input type="checkbox" class="mr-2"> Pack Essentials</li>
+                <li><input type="checkbox" class="mr-2"> Arrange Transport</li>
+            </ul>
+        </div>
+    </div>
+
 
     <script>
       const placesData = {
@@ -186,5 +134,6 @@
         }
       }
     </script>
-  </body>
+</body>
 </html>
+   
