@@ -1,139 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Planner</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Planner - Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .gradient-bg {
+      background: linear-gradient(-45deg, #791c00, black, #10459a, grey);
+      background-size: 400% 400%;
+      animation: gradient 35s ease infinite;
+    }
+  </style>
 </head>
-<body class="bg-gradient-to-tr from-stone-950 to-blue-950 mx-auto p-6">
-
-    <nav class="bg-slate-300 rounded-3xl mx-3 mt-6 hover:scale-90 transition-transform duration-1000 shadow-lg p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-gray-800">TripWise</h1>
-            <div class="flex space-x-4">
-                <a href="#" class="text-black-900 hover:underline">Home</a>
-                <a href="#" class="text-black-900 hover:underline">Logout</a>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container mx-auto p-6 flex flex-wrap gap-6">
-        <div class="w-full md:w-2/3 bg-white p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold text-gray-800 mb-4">Famous Places in <span id="state-name" class="text-blue-500"></span></h2>
-            <div id="places-list" class="space-y-4">
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <h3 class="font-semibold text-gray-700">Place Name</h3>
-                    <p class="text-sm text-gray-500">Date: 2023-10-15 | Time: 10:00 AM</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="w-full md:w-2/3 bg-white p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold text-gray-800 mb-4">Plan Your Trip</h2>
-            <input type="text" id="state-input" placeholder="Enter State" class="w-full px-4 py-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <button onclick="updatePlaces()" class="w-full bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300">Search</button>
-        </div>
+<body class="gradient-bg flex items-center justify-center min-h-screen p-6">
+  <div class="w-full max-w-4xl flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12 bg-white/10 backdrop-blur-md p-12 rounded-3xl shadow-2xl">
+    <!-- Left Side Greeting -->
+    <div class="text-center md:text-left text-white px-6">
+      <h2 class="text-4xl font-bold">Hey There!</h2>
+      <p class="text-lg mt-2">Welcome to Travel Planner</p>
     </div>
 
-    <div class="container mx-auto p-6 flex flex-wrap gap-6 items-center">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-96 border border-gray-200">
-            <h2 class="text-2xl font-bold text-black mb-4">Travel Expense Tracker</h2>
-            <div class="mb-4">
-                <label class="block text-black text-sm font-semibold">Expense Name</label>
-                <input id="expense-name" type="text" class="w-full p-3 rounded-md bg-white border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-blue-400">
-            </div>
-            <div class="mb-4">
-                <label class="block text-black text-sm font-semibold">Amount ($)</label>
-                <input id="expense-amount" type="number" class="w-full p-3 rounded-md bg-white border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-blue-400">
-            </div>
-            <button onclick="addExpense()" class="w-full p-3 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition-all">
-                Add Expense
-            </button>
-            <h3 class="text-lg font-semibold text-black mt-6">Expenses:</h3>
-            <ul id="expense-list" class="mt-3 space-y-2"></ul>
-            <div class="mt-4 p-3 bg-white border border-gray-300 rounded-md">
-                <h3 class="text-lg font-semibold text-black">Total: $<span id="total-expense">0</span></h3>
-            </div>
+    <!-- Login Form -->
+    <div class="w-full max-w-md px-6">
+      <h2 class="text-3xl font-bold text-white text-center mb-6">Welcome Back</h2>
+      <form action="travel-planner.html" method="GET" class="space-y-6">
+        <!-- Email Input -->
+        <div>
+          <label for="email" class="block text-white/80 text-sm mb-2">Email</label>
+          <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-400" required>
         </div>
-        <h3 class="text-4xl font-bold text-white w-64">
-            Plan Smart, Spend Wisely, Travel More! 
-        </h3>
+
+        <!-- Password Input -->
+        <div>
+          <label for="password" class="block text-white/80 text-sm mb-2">Password</label>
+          <input type="password" id="password" name="password" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+        </div>
+
+        <!-- Login Button -->
+        <button type="submit" class="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+          Login
+        </button>
+
+        <!-- Skip Link -->
+        <a href="mainpage.html" class="block text-center text-white/80 mt-4 hover:text-white">Skip</a>
+      </form>
+
+      <!-- Signup Link -->
+      <p class="text-center text-white/80 mt-6">
+        Don't have an account?
+        <a href="#" class="text-blue-400 hover:underline">Sign up</a>
+      </p>
     </div>
-    <div class="flex flex-col space-y-6">
-        <!-- Checklist Section -->
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold text-gray-800 mb-4">Checklist</h2>
-            <p class="text-gray-600">Ensure you don't forget anything important.</p>
-            <ul class="mt-4 space-y-2">
-                <li><input type="checkbox" class="mr-2"> Passport & ID</li>
-                <li><input type="checkbox" class="mr-2"> Flight Tickets</li>
-                <li><input type="checkbox" class="mr-2"> Travel Insurance</li>
-                <li><input type="checkbox" class="mr-2"> Accommodation Bookings</li>
-            </ul>
-        </div>
-    
-        <!-- Smart Recommendations Section -->
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold text-gray-800 mb-4">Smart Recommendations</h2>
-            <p class="text-gray-600">Personalized suggestions based on your travel plans.</p>
-            <ul class="mt-4 space-y-2">
-                <li>🌍 Visit the most trending attractions nearby.</li>
-                <li>🍽️ Try famous local cuisines at top-rated restaurants.</li>
-                <li>🗺️ Use offline maps for seamless navigation.</li>
-                <li>🎫 Book activities in advance to save money.</li>
-            </ul>
-        </div>
-    </div>
-
-
-    <div class="container mx-auto p-6">
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold text-gray-800 mb-4">Checklist</h2>
-            <ul id="checklist" class="space-y-2">
-                <li><input type="checkbox" class="mr-2"> Book Flights</li>
-                <li><input type="checkbox" class="mr-2"> Reserve Hotel</li>
-                <li><input type="checkbox" class="mr-2"> Pack Essentials</li>
-                <li><input type="checkbox" class="mr-2"> Arrange Transport</li>
-            </ul>
-        </div>
-    </div>
-
-
-    <script>
-      const placesData = {
-        Tamilnadu: [
-          { name: "Marina Beach", date: "2024-02-22", time: "10:00 AM" },
-          { name: "Meenakshi Temple", date: "2024-02-23", time: "02:00 PM" },
-        ],
-        Karnataka: [
-          { name: "Mysore Palace", date: "2024-02-24", time: "11:00 AM" },
-          { name: "Coorg Hills", date: "2024-02-25", time: "04:00 PM" },
-        ],
-        Kerala: [
-          { name: "Munnar", date: "2024-02-24", time: "11:00 AM" },
-          { name: "Wayanad", date: "2024-02-25", time: "04:00 PM" },
-        ],
-      };
-
-      function updatePlaces() {
-        const state = document.getElementById("state-input").value;
-        document.getElementById("state-name").textContent = state;
-        const placesList = document.getElementById("places-list");
-        placesList.innerHTML = "";
-        if (placesData[state]) {
-          placesData[state].forEach((place) => {
-            placesList.innerHTML += `
-            <div class="bg-gray-50 p-4 rounded-lg">
-              <h3 class="font-semibold text-gray-700">${place.name}</h3>
-              <p class="text-sm text-gray-500">Date: ${place.date} | Time: ${place.time}</p>
-            </div>`;
-          });
-        } else {
-          placesList.innerHTML = `<p class="text-gray-600">No famous places found for this state.</p>`;
-        }
-      }
-    </script>
+  </div>
 </body>
 </html>
-   
